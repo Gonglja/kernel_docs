@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kernel driver for Qualcomm LPG &mdash; The Linux Kernel  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_rtd_colors.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> The Linux Kernel
+          </a>
+              <div class="version">
+                6.1.0-rc6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../process/development-process.html">A guide to the Kernel Development Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process/submitting-patches.html">Submitting patches: the essential guide to getting your code into the kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process/code-of-conduct.html">Code of conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintainer/index.html">Kernel Maintainer Handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process/index.html">All development-process docs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-api/index.html">Core API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driver-api/index.html">The Linux driver implementer’s API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../subsystem-apis.html">Kernel subsystem documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../locking/index.html">Locking in the kernel</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../process/license-rules.html">Linux kernel licensing rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc-guide/index.html">How to write kernel documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev-tools/index.html">Development tools for the kernel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev-tools/testing-overview.html">Kernel Testing Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kernel-hacking/index.html">Kernel Hacking Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trace/index.html">Linux Tracing Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fault-injection/index.html">fault-injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../livepatch/index.html">Kernel Livepatching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/index.html">Rust</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../admin-guide/index.html">The Linux kernel user’s and administrator’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kbuild/index.html">The kernel build system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin-guide/reporting-issues.html">Reporting issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">User-space tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userspace-api/index.html">The Linux kernel user-space API guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../firmware-guide/index.html">The Linux kernel firmware guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devicetree/index.html">Open Firmware and Devicetree</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../arch.html">CPU Architectures</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../staging/index.html">Unsorted Documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../translations/index.html">Translations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Linux Kernel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kernel driver for Qualcomm LPG</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/leds/leds-qcom-lpg.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kernel-driver-for-qualcomm-lpg">
+<h1>Kernel driver for Qualcomm LPG<a class="headerlink" href="#kernel-driver-for-qualcomm-lpg" title="Permalink to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>The Qualcomm LPG can be found in a variety of Qualcomm PMICs and consists of a
+number of PWM channels, a programmable pattern lookup table and a RGB LED
+current sink.</p>
+<p>To facilitate the various use cases, the LPG channels can be exposed as
+individual LEDs, grouped together as RGB LEDs or otherwise be accessed as PWM
+channels. The output of each PWM channel is routed to other hardware
+blocks, such as the RGB current sink, GPIO pins etc.</p>
+<p>The each PWM channel can operate with a period between 27us and 384 seconds and
+has a 9 bit resolution of the duty cycle.</p>
+<p>In order to provide support for status notifications with the CPU subsystem in
+deeper idle states the LPG provides pattern support. This consists of a shared
+lookup table of brightness values and per channel properties to select the
+range within the table to use, the rate and if the pattern should repeat.</p>
+<p>The pattern for a channel can be programmed using the “pattern” trigger, using
+the hw_pattern attribute.</p>
+</section>
+<section id="sys-class-leds-led-hw-pattern">
+<h2>/sys/class/leds/&lt;led&gt;/hw_pattern<a class="headerlink" href="#sys-class-leds-led-hw-pattern" title="Permalink to this heading">¶</a></h2>
+<p>Specify a hardware pattern for a Qualcomm LPG LED.</p>
+<p>The pattern is a series of brightness and hold-time pairs, with the hold-time
+expressed in milliseconds. The hold time is a property of the pattern and must
+therefor be identical for each element in the pattern (except for the pauses
+described below). As the LPG hardware is not able to perform the linear
+transitions expected by the leds-trigger-pattern format, each entry in the
+pattern must be followed a zero-length entry of the same brightness.</p>
+<p>Simple pattern:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;255 500 255 0 0 500 0 0&quot;
+
+    ^
+    |
+255 +----+    +----+
+    |    |    |    |      ...
+  0 |    +----+    +----
+    +----------------------&gt;
+    0    5   10   15     time (100ms)
+</pre></div>
+</div>
+<p>The LPG supports specifying a longer hold-time for the first and last element
+in the pattern, the so called “low pause” and “high pause”.</p>
+<p>Low-pause pattern:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;255 1000 255 0 0 500 0 0 255 500 255 0 0 500 0 0&quot;
+
+    ^
+    |
+255 +--------+    +----+    +----+    +--------+
+    |        |    |    |    |    |    |        |      ...
+  0 |        +----+    +----+    +----+        +----
+    +-----------------------------&gt;
+    0    5   10   15  20   25   time (100ms)
+</pre></div>
+</div>
+<p>Similarily, the last entry can be stretched by using a higher hold-time on the
+last entry.</p>
+<p>In order to save space in the shared lookup table the LPG supports “ping-pong”
+mode, in which case each run through the pattern is performed by first running
+the pattern forward, then backwards. This mode is automatically used by the
+driver when the given pattern is a palindrome. In this case the “high pause”
+denotes the wait time before the pattern is run in reverse and as such the
+specified hold-time of the middle item in the pattern is allowed to have a
+different hold-time.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The kernel development community.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
